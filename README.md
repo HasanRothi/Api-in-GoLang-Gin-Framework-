@@ -1,6 +1,6 @@
 # How to Start
 
-1. [Install go] (https://golang.org/doc/install)
+1. Install go (https://golang.org/doc/install)
 2. create a folder & go file (main.go)
 3. type go get -u github.com/gin-gonic/gin (install gin framework)
 4. type go get github.com/codegangsta/gin (install live reloader)
