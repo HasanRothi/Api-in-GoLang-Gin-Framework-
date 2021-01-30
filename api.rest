@@ -1,0 +1,6 @@
+POST  http://localhost:3000/form_post
+Content-Type: application/json
+
+{
+    "Username": "Hello Bro"
+}

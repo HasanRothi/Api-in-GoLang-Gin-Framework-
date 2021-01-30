@@ -22,6 +22,15 @@ func main() {
 		message := name + " is " + action
 		c.String(http.StatusOK, message)
 	})
+	router.POST("/form_post", func(c *gin.Context) {
+		type LoginCommand struct {
+			Username string 
+			Password string 
+		}
+		var loginCmd LoginCommand
+		c.BindJSON(&loginCmd)
+		c.JSON(http.StatusOK, gin.H{"user": loginCmd})
+	})
 
 	router.Run() 
 	//without gin reload (go run main.go)
