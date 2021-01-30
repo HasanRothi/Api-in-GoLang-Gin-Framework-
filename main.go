@@ -2,6 +2,8 @@ package main
 
 import "github.com/gin-gonic/gin"
 import "net/http"
+import "log"
+import "fmt"
 
 func main() {
 	router := gin.Default()
@@ -30,6 +32,15 @@ func main() {
 		var loginCmd LoginCommand
 		c.BindJSON(&loginCmd)
 		c.JSON(http.StatusOK, gin.H{"user": loginCmd})
+	})
+	// router.MaxMultipartMemory = 8 << 20  // 8 MiB
+	router.POST("/upload", func(c *gin.Context) {
+		// single file
+		file, _ := c.FormFile("file")
+		log.Println(file.Filename)
+		// Upload the file to specific dst.
+		c.SaveUploadedFile(file, "/uploads")
+		c.String(http.StatusOK, fmt.Sprintf("'%s' uploaded!", file.Filename))
 	})
 
 	router.Run() 
